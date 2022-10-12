@@ -5,7 +5,8 @@ import { FormatadorService } from '../../services/FormatadorService';
 import { Foto, ItemLista, ListaStyled, Informacoes, Nome, Valor, Descricao, ListaVazia } from "./Lista.style";
 
 interface ListaProps {
-    professores: Professor[]
+    professores: Professor[],
+    onSelect: (professor: Professor) => void,
 }
 
 const Lista = (props: ListaProps) => {
@@ -20,7 +21,7 @@ const Lista = (props: ListaProps) => {
                                 <Nome>{professor.nome}</Nome>
                                 <Valor>{FormatadorService.valorMonetario(professor.valor_hora)} por hora</Valor>
                                 <Descricao>{FormatadorService.limitarTexto(professor.descricao, 200)}</Descricao>
-                                <Button sx={{ width: '70%'}}>Marcar Aula com Aline</Button>
+                                <Button onClick={() => props.onSelect(professor)}sx={{ width: '70%'}}>Marcar Aula com{professor.nome} </Button>
                             </Informacoes>
                         </ItemLista>
                         ))}
